@@ -45,26 +45,42 @@ int main() {
 
     printf("Варіант (1-25): ");
     scanf("%d", &variant);
-
+    while (variant < 1 || variant > 25) {
+        printf("Помилка (1-25): ");
+        scanf("%d", &variant);
+    }
 
     printf("Режим (1 - N, 2 - delta): ");
     scanf("%d", &mode);
+    while (mode != 1 && mode != 2) {
+        printf("Помилка (1 або 2): ");
+        scanf("%d", &mode);
+    }
 
     printf("X1: ");
     scanf("%lf", &X1);
     printf("X2: ");
     scanf("%lf", &X2);
-
+    while (X2 <= X1) {
+        printf("Помилка (X2 має бути > X1): ");
+        scanf("%lf", &X2);
+    }
 
     if (mode == 1) {
         printf("N (>= 2): ");
         scanf("%u", &N);
-
+        while (N < 2) {
+            printf("Помилка (N >= 2): ");
+            scanf("%u", &N);
+        }
         delta = (X2 - X1) / (N - 1);
     } else {
         printf("delta (> 0): ");
         scanf("%lf", &delta);
-
+        while (delta <= 0) {
+            printf("Помилка (delta > 0): ");
+            scanf("%lf", &delta);
+        }
         N = (unsigned int)((X2 - X1) / delta) + 1;
     }
 
@@ -95,10 +111,7 @@ int main() {
     for (unsigned int i = 1; i < N; i++) {
         double x1_curr = X1 + (i - 1) * delta;
         double x2_curr = X1 + i * delta;
-        if (x2_curr > X2)
-        {
-            x2_curr = X2
-        };
+        if (x2_curr > X2) x2_curr = X2;
 
         if (f(x1_curr, variant) * f(x2_curr, variant) <= 0) {
             printf("[%.2f; %.2f]\n", x1_curr, x2_curr);
