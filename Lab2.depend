@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1789706733 source:c:\disk d\informatica project kpi\prog\lab2_chikvaidze_rb\main.c
+	<stdio.h>
+	<stdlib.h>
+	<math.h>
+
